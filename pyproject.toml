@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "urdf-collision-editor"
+version = "0.1.0"
+description = "中文 URDF 碰撞体简化编辑器"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "viser>=1.1.1,<2", "yourdfpy>=0.0.60,<0.1", "trimesh>=4.6,<6",
+  "pycollada>=0.8", "numpy>=1.26", "scipy>=1.11", "lxml>=5",
+  "pydantic>=2,<3", "pyyaml>=6",
+]
+
+[project.scripts]
+urdf-collision-editor = "collision_editor.app:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["collision_editor"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
